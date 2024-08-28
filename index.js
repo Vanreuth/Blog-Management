@@ -2,6 +2,7 @@ import { config } from 'dotenv';
 import express from 'express';
 import pool from "./src/db/dbConnect.js"
 import authRouter from "./src/routes/authRoutes.js"
+import userRouter from './src/routes/userRoutes.js';
 config();
 const app = express();
 const port = process.env.PORT || 3500;
@@ -16,6 +17,7 @@ app.use(express.urlencoded({extended : true}));
 app.use('public',express.static('uploads'));
 
 app.use('/api/auth/',authRouter);
+app.use('/api/user/',userRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

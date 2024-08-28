@@ -21,7 +21,7 @@ export const userRegisterController = async (req, res) => {
 
             await pool.query(sql, insertValue);
 
-            const token = generateToken({ username });
+            const token = generateToken(username);
 
             res.status(200).json({
                 message: 'Register Success',
@@ -53,7 +53,7 @@ export const userLoginController = async (req, res) => {
 
                 if (isPasswordValid) {
                     const username = user.username;
-                    const token = generateToken({ username });
+                    const token = generateToken( username );
 
                     res.status(200).json({
                         message: 'Login Success',
@@ -70,3 +70,5 @@ export const userLoginController = async (req, res) => {
         res.status(401).json({ message: 'All Fields Must Not Be Empty' });
     }
 };
+
+
