@@ -1,18 +1,18 @@
-// src/middleware/multerConfig.js
 import multer from 'multer';
-import path from 'path';
 
-// Set up storage configuration
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Directory where files will be saved
+    destination : (request,file,callback) => {
+        callback(null,'./uploads');
     },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Naming the file with timestamp
+    filename : (request,file,callback) => {
+        callback(null , Date.now() + '-' + file.originalname);
     }
-});
+    //filterFile -> (jpg,...)
+    //fileSize -> 10MB
+})
 
-// Initialize multer with the storage configuration
-const upload = multer({ storage: storage });
+const upload = multer({
+    storage : storage
+});
 
 export default upload;

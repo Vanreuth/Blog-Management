@@ -5,15 +5,19 @@ import { config } from 'dotenv';
 config();
 
 export const userRegisterController = async (req, res) => {
+    const image = req.file;
     const { username, email, password } = req.body;
+
+    console.log('Received file:', image); // Debugging line
+    console.log('File path:', image ? image.filename : 'No file'); // Debugging line
 
     try {
         const saltRounds = parseInt(process.env.ROUND_NUMBER) || 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        if (username && email && hashedPassword) {
-            const sql = `INSERT INTO users (username, email, password) VALUES (?, ?, ?)`;
-            const insertValue = [username, email, hashedPassword];
+        if (username && email && hashedPassword && image) {
+            const sql = `INSERT INTO users (username, email, password, profile_img) VALUES (?, ?, ?, ?)`;
+            const insertValue = [username, email, hashedPassword, image.filename];
 
             await pool.query(sql, insertValue);
 
@@ -33,6 +37,7 @@ export const userRegisterController = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 };
+
 
 export const userLoginController = async (req, res) => {
     const { email, password } = req.body;
