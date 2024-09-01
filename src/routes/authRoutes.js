@@ -4,7 +4,7 @@ import { userRegisterController,userLoginController} from "../controller/authCon
 import authenticateToken from "../utils/auth_token.js";
 const authRouter = Router();
 
-authRouter.post('/register' , upload.single('file') , userRegisterController);
+authRouter.post('/register' , upload.single('profile_img') , userRegisterController);
 authRouter.post('/login', userLoginController);
 
 // authRouter.get('/protected', authenticateToken, (req, res) => {

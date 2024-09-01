@@ -3,6 +3,11 @@ import express from 'express';
 import pool from "./src/db/dbConnect.js"
 import authRouter from "./src/routes/authRoutes.js"
 import userRouter from './src/routes/userRoutes.js';
+import crypto from 'crypto';
+
+// const secretKey = crypto.randomBytes(64).toString('hex');
+// console.log('Generated Secret Key:', secretKey);
+
 config();
 const app = express();
 const port = process.env.PORT || 3500;

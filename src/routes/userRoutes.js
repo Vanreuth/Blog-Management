@@ -6,7 +6,7 @@ const userRouter = Router();
 
 userRouter.use(authenticateToken);
 userRouter.get('/getprofile' , getAuthenticatedUserController);
-userRouter.put('/updateprofile', upload.single('file') , editProfileController);
+userRouter.put('/updateprofile', upload.single('profile_img') , editProfileController);
 
 
 
