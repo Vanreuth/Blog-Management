@@ -3,7 +3,6 @@ import express from 'express';
 import pool from "./src/db/dbConnect.js"
 import authRouter from "./src/routes/authRoutes.js"
 import userRouter from './src/routes/userRoutes.js';
-import crypto from 'crypto';
 import blogRouter from './src/routes/blogRoutes.js';
 
 // const secretKey = crypto.randomBytes(64).toString('hex');
